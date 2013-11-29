@@ -1,0 +1,12 @@
+{
+  "name": "weicopai",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "3.x",
+    "ejs": "0.8.x",
+    "needle": "0.6.x",
+    "log4js": "0.6.x"
+  },
+  "devDependencies": {
+  }
+}
