@@ -1,6 +1,9 @@
 var express = require('express'),
-    ejs = require('ejs'), 
     app = express(),
+    ejs = require('ejs'), 
+    util = require('util'),
+    // 监听的端口号
+    port = process.argv[2] || 3000,
     routes = require('./routes'); 
 
 //设置模板引擎为ejs                                                                                                                         
@@ -35,4 +38,5 @@ app.use(app.router);
 app.post('/api/login', routes.user.login);
 app.get('/api/login', routes.user.login);
 
-app.listen(3000);
+app.listen(port);
+console.log(util.format('server start at http://127.0.0.1:%s', port));

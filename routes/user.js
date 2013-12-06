@@ -1,5 +1,5 @@
 var Client = require('../libs/client'), 
-    tool  = require('../libs/tool'), 
+    utils  = require('../libs/utils'), 
     crypto = require('crypto'),
     conf = require('../conf');
 
@@ -30,7 +30,7 @@ exports.login = function(req, res, next) {
             // 获取返回数据的类型
             // 如果为object，则登陆成功
             // 如果为string, 则登陆失败
-            type = tool.type(data);
+            type = utils.type(data);
             if (type === 'object' && data['user_id']) {
                 res.cookie('user_id', data['user_id'], {'signed': true, 'maxAge': 900000, 'httpOnly': true});
                 res.cookie('oauth_token', data['oauth_token'], {'signed': true, 'maxAge': 900000, 'httpOnly': true});
