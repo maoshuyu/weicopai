@@ -5,7 +5,9 @@
     "express": "3.x",
     "ejs": "0.8.x",
     "needle": "0.6.x",
-    "log4js": "0.6.x"
+    "log4js": "0.6.x",
+    "oauth-sign": "0.3.x",
+    "node-uuid": "1.4.x"
   },
   "devDependencies": {
   }
