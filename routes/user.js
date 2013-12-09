@@ -68,7 +68,9 @@ exports.login = function(req, res, next) {
 };
 
 exports.logout = function(req, res, next) {
-    res.clearCookie();
+    res.clearCookie('user_id');
+    res.clearCookie('oauth_token');
+    res.clearCookie('oauth_token_secret');
     res.json({
         'code': '0',         
         'message': '注销成功' 
