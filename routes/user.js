@@ -11,6 +11,14 @@ exports.login = function(req, res, next) {
     /*username = req.body.username,
     password = req.body.password;*/
 
+    if (!(username && password)) {
+        res.json({
+            'code': '3',         
+            'message': '用户名密码不能为空'
+        }); 
+        return;
+    }
+
     params = {
         'consumer_key': conf.consumer.key, 
         'consumer_secret': conf.consumer.secret,
@@ -57,4 +65,12 @@ exports.login = function(req, res, next) {
     };
 
     Client.lomo.fetch('/v1/login', params, done); 
-}
+};
+
+exports.logout = function(req, res, next) {
+    res.clearCookie();
+    res.json({
+        'code': '0',         
+        'message': '注销成功' 
+    });
+};
