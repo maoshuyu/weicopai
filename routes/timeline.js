@@ -1,4 +1,4 @@
-var Client = require('../libs/client');
+var timeline = require('../services').timeline;
 
 // friend timeline
 exports.friend = function(req, res, next) {
@@ -7,24 +7,16 @@ exports.friend = function(req, res, next) {
     count = req.query.count || 8, 
     sinceId = req.query.sinceId,
     maxId = req.query.maxId,
-    params, done;
-
-    params = {
-        'user_id': userId, 
-        'countperpage': count
-    };
-
-    if (sinceId) {
-        params['since_id'] = sinceId; 
-    }
-    if (maxId) {
-        params['max_id'] = maxId; 
-    }
+    done;
 
     done = function(error, data) {
         res.json(data);
     };
 
 
-    Client.lomo.fetch('/v1/note/friend_timeline', params, done, oauth); 
+    timeline.friend(userId, oauth, done, {
+        'count': count,         
+        'maxId': maxId,
+        'sinceId': sinceId
+    });
 };
