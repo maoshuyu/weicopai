@@ -1,5 +1,5 @@
 var Client = require('../libs/client'),
-    utils = require('../libs/utils');
+parse = require('../libs/parse');
 
 /*
  * 获取friend timeline
@@ -38,7 +38,7 @@ exports.friend = function(userId, oauth, cb, opt) {
         } 
         data = [];
         list.forEach(function(item, i) {
-            data.push(utils.parsePhoto(item)); 
+            data.push(parse.photo(item, true)); 
         }); 
 
         cb(null, data);
