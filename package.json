@@ -7,7 +7,8 @@
     "needle": "0.6.x",
     "log4js": "0.6.x",
     "oauth-sign": "0.3.x",
-    "node-uuid": "1.4.x"
+    "node-uuid": "1.4.x",
+    "emoji": "0.2.1"
   },
   "devDependencies": {
   }

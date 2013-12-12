@@ -1,4 +1,5 @@
-var utils = require('./utils');
+var utils = require('./utils'),
+emoji = require('emoji');
 
 exports.photo = function(data, detail) {
     var photo = {};
@@ -27,9 +28,9 @@ exports.photo = function(data, detail) {
 
     // photo description
     if (data['description']) {
-        photo['description'] =  data['description'];   
+        photo['description'] = data['description'];   
         // emoji
-        photo['descriptionEmoji'] =  data['description'];   
+        photo['descriptionEmoji'] = emoji.unifiedToHTML(data['description']);   
     } else {
         photo['description'] = ''; 
         photo['descriptionEmoji'] = '';
@@ -58,7 +59,7 @@ exports.user = function(data, detail) {
     // user name
     if (data['name']) {
         user['name'] = data['name']; 
-        user['nameEmoji'] = data['name'];
+        user['nameEmoji'] = emoji.unifiedToHTML(data['name']);
     } else {
         user['name'] = user['emoji'] = ''; 
     }
