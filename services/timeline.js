@@ -1,4 +1,5 @@
 var Client = require('../libs/client'),
+utils = require('../libs/utils'),
 parse = require('../libs/parse');
 
 /*
@@ -30,18 +31,27 @@ exports.friend = function(userId, oauth, cb, opt) {
         params['max_id'] = opt.maxId; 
     }
 
-    done = function(error, list) {
-        var data;
+    done = function(error, data) {
+        var list;
         if (error) {
-            cb(error); 
+            cb({
+                'message': '服务器错误'         
+            }); 
             return;
         } 
-        data = [];
-        list.forEach(function(item, i) {
-            data.push(parse.photo(item, true)); 
-        }); 
 
-        cb(null, data);
+        if (utils.type(data) === 'array') {
+            list = [];
+            data.forEach(function(item, i) {
+                list.push(parse.photo(item, true)); 
+            }); 
+            cb(null, list);
+        } else if (data === 'auth failed') {
+            cb({
+                'message': '用户未登陆'
+            }); 
+        }
+
     };
 
     Client.lomo.fetch('/v1/note/friend_timeline', params, done, oauth); 

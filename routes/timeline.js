@@ -10,9 +10,19 @@ exports.friend = function(req, res, next) {
     done;
 
     done = function(error, data) {
-        res.json(data);
-    };
+        if (error) {
+            res.json({
+                'code': 1,                    
+                'message': error.message
+            }); 
+            return;
+        }
 
+        res.json({
+            'code': 0,          
+            'timeline': data
+        });
+    };
 
     timeline.friend(userId, oauth, done, {
         'count': count,         

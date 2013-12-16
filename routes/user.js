@@ -40,9 +40,9 @@ exports.login = function(req, res, next) {
             // 如果为string, 则登陆失败
             type = utils.type(data);
             if (type === 'object' && data['user_id']) {
-                res.cookie('user_id', data['user_id'], {'signed': true, 'maxAge': 900000, 'httpOnly': true});
-                res.cookie('oauth_token', data['oauth_token'], {'signed': true, 'maxAge': 900000, 'httpOnly': true});
-                res.cookie('oauth_token_secret', data['oauth_token_secret'], {'signed': true, 'maxAge': 900000, 'httpOnly': true});
+                res.cookie('user_id', data['user_id'], {'signed': true, 'maxAge': 2592000 * 30, 'httpOnly': true});
+                res.cookie('oauth_token', data['oauth_token'], {'signed': true, 'maxAge': 2592000 * 30, 'httpOnly': true});
+                res.cookie('oauth_token_secret', data['oauth_token_secret'], {'signed': true, 'maxAge': 2592000 * 30, 'httpOnly': true});
                 res.json({
                     'code': '0',
                     'message': '登陆成功',
