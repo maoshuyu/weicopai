@@ -1,12 +1,12 @@
 var express = require('express'),
-    app = express(),
-    ejs = require('ejs'), 
-    log4js = require('log4js'),
-    util = require('util'),
-    // 监听的端口号
-    port = process.argv[2] || 3000,
-    logger = require('./logger'),
-    routes = require('./routes'); 
+app = express(),
+ejs = require('ejs'), 
+log4js = require('log4js'),
+util = require('util'),
+// 监听的端口号
+port = process.argv[2] || 3000,
+logger = require('./logger'),
+routes = require('./routes'); 
 
 //设置模板引擎为ejs                                                                                                                         
 app.set('views', __dirname + '/views');                                                                                                     
@@ -43,6 +43,8 @@ app.use(function(req, res, next) {
 
         req.oauth = oauth;
         req.userId = userId;
+    } else {
+        userId = 0; 
     }
     next();
 });
@@ -59,6 +61,7 @@ app.get('/api/user/logout', routes.user.logout);
 
 // timeline routes
 app.get('/api/timeline/friend', routes.timeline.friend);
+app.get('/api/timeline/user', routes.timeline.user);
 
 // listen port
 app.listen(port);
