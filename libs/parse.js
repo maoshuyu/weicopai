@@ -40,9 +40,9 @@ exports.photo = function(data, detail) {
         if (data['init_time']) {
             // 转换unix时间为js时间
             photo['time'] = utils.time.unix(data['init_time']); 
-            photo['time'] = utils.time.fromNow(photo['time']);
+            photo['time'] = exports.time(photo['time']);
         } else {
-        
+            photo['time'] = null; 
         }
     }
 
@@ -87,6 +87,18 @@ exports.user = function(data, detail) {
 
     return user;
 
+};
+
+exports.time = function(t) {
+    var fromNow = utils.time.fromNow(t),    
+    ytm = utils.time.ytm(t),
+    mtd = utils.time.mtd(t);
+    return {
+        'fromNow': fromNow, 
+        'ytm': ytm,
+        'mtd': mtd,
+        'origin': t
+    };
 };
 
 

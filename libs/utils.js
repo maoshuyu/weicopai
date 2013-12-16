@@ -46,5 +46,11 @@ exports.time = {
         } else {
             return util.format('%d年%d月%d日 %d:%d', past.getFullYear(), (past.getMonth() + 1),  past.getDate(), past.getHours(), past.getMinutes());
         }
+    },
+    'ytm': function(t) {
+        return util.format('%d年 %d月', t.getFullYear(), (t.getMonth() +1)); 
+    },
+    'mtd': function(t) {
+        return util.format('%d月 %d日', (t.getMonth() +1), t.getDate()); 
     }
 };
