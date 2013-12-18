@@ -1,6 +1,8 @@
 var timeline = require('../services').timeline;
 
-// friend timeline
+/*
+ * friend timeline
+ */
 exports.friend = function(req, res, next) {
     var oauth = req.oauth,
     userId = req.userId,
@@ -31,10 +33,13 @@ exports.friend = function(req, res, next) {
     });
 };
 
+/*
+ * user timeline
+ */
 exports.user = function(req, res, next) {
     var oauth = req.oauth,
     userId = req.userId,
-    ownerId = req.query.ownerId,
+    ownerId = req.params.ownerId,
     count = req.query.count || 8,
     sinceId = req.query.sinceId,
     maxId = req.query.maxId,

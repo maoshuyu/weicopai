@@ -7,7 +7,7 @@ parse = require('../libs/parse');
  * Callback: 
  * 回调函数参数列表:
  * - error, 请求错误
- * - data, timeline list
+ * - list, timeline list
  * @param {String} userId 用户ID
  * @param {Object} oauth Oauth对象 
  * @param {Function} cb Callback函数
@@ -65,7 +65,7 @@ exports.friend = function(userId, oauth, cb, opt) {
  * Callback: 
  * 回调函数参数列表:
  * - error, 请求错误
- * - data, timeline list
+ * - list, timeline list
  * @param {String} userId 用户ID
  * @param {String} ownerId timeline所有者ID
  * @param {Object} oauth Oauth对象 

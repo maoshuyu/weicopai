@@ -61,7 +61,10 @@ app.get('/api/user/logout', routes.user.logout);
 
 // timeline routes
 app.get('/api/timeline/friend', routes.timeline.friend);
-app.get('/api/timeline/user', routes.timeline.user);
+app.get('/api/timeline/:ownerId/user', routes.timeline.user);
+
+// relationship routes
+app.get('/api/relationship/:ownerId/following', routes.relationship.following);
 
 // listen port
 app.listen(port);
