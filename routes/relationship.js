@@ -84,6 +84,7 @@ exports.follow = function(req, res, next) {
             return;
         }
         data['code'] = 0;
+        res.json(data);
     };
 
     relationship.follow(userId, toId, action, oauth, done);

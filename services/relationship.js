@@ -145,7 +145,10 @@ exports.follow = function(userId, toId, action, oauth, cb) {
             }); 
             return;
         }
-        if (data === 'success') {
+        // 返回success followed_before isdup 都表示请求成功 
+        // 如果一个用户增经被followed 则返回followed_before
+        // isdup 表示用户已经被follow了 
+        if (data === 'success' || data === 'followed_before' || data === 'isdup') {
             cb(null, {
                 'toId': toId,            
                 'action': action
