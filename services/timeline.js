@@ -34,7 +34,7 @@ exports.friend = function(userId, oauth, cb, opt) {
         var list;
         if (error) {
             cb({
-                'message': '服务器错误'         
+                'message': error.message         
             }); 
             return;
         } 
@@ -94,7 +94,7 @@ exports.user = function(userId, ownerId, oauth, cb, opt) {
         var list;
         if (error) {
             cb({
-                'message': '服务器错误'         
+                'message': error.message        
             }); 
             return;
         } 

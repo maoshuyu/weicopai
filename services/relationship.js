@@ -36,7 +36,7 @@ exports.following = function(userId, ownerId, oauth, cb, opt) {
         var list;
         if (error) {
             cb({
-                'message': '服务器错误'         
+                'message': error.message         
             }); 
             return;
         }
@@ -94,7 +94,7 @@ exports.follower = function(userId, ownerId, oauth, cb, opt) {
         var list;
         if (error) {
             cb({
-                'message': '服务器错误'         
+                'message': error.message         
             }); 
             return;
         }
@@ -115,4 +115,52 @@ exports.follower = function(userId, ownerId, oauth, cb, opt) {
     };
 
     Client.lomo.fetch('/v1/profile/followers', params, done, oauth); 
+};
+
+/*
+ * 关注，取消关注 
+ * Callback: 
+ * 回调函数参数列表:
+ * - error, 请求错误
+ * - data, 是否关注 / 取消关注成功 
+ * @param {String} userId 用户ID
+ * @param {String} toId 关注 / 取消关注 用户ID 
+ * @param {String} action 关注 / 取消关注操作 
+ * @param {Object} oauth Oauth对象 
+ * @param {Function} cb Callback函数
+ */
+exports.follow = function(userId, toId, action, oauth, cb) {
+    var params, done;
+
+    params = {
+        'from_id': userId, 
+        'to_id': toId,
+        'action': action 
+    };
+
+    done = function(error, data) {
+        if (error) {
+            cb({
+                'message': error.message          
+            }); 
+            return;
+        }
+        if (data === 'success') {
+            cb(null, {
+                'toId': toId,            
+                'action': action
+            });
+        } else if (data === 'auth failed') {
+            cb({
+                'message': '用户未登陆'            
+            }); 
+        } else {
+            cb({
+                'message': '服务器错误'          
+            }); 
+        }
+    };
+
+    Client.lomo.fetch('/v1/profile/follow', params, done, oauth); 
+
 };

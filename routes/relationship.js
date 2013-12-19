@@ -66,3 +66,26 @@ exports.follower = function(req, res, next) {
         'count': count
     });
 };
+
+
+exports.follow = function(req, res, next) {
+    var oauth = req.oauth,
+    userId = req.userId,
+    toId = req.params.toId,
+    action = req.query.action,
+    done;
+
+    done = function(error, data) {
+        if (error) {
+            res.json({
+                'code': 1,         
+                'message': error.message
+            }); 
+            return;
+        }
+        data['code'] = 0;
+    };
+
+    relationship.follow(userId, toId, action, oauth, done);
+
+};

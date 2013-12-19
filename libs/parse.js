@@ -74,13 +74,8 @@ exports.user = function(data, detail) {
     }
 
     // followed
-    // followed 有时候为 undefined;
-    if (!data['followed']) {
-        if (data['followed'] === 1) {
-            user['followed'] = true; 
-        } else {
-            user['followed'] = false; 
-        }
+    if (data['followed'] === 1) {
+        user['followed'] = true; 
     } else {
         user['followed'] = false; 
     }

@@ -66,6 +66,7 @@ app.get('/api/timeline/:ownerId/user', routes.timeline.user);
 // relationship routes
 app.get('/api/relationship/:ownerId/following', routes.relationship.following);
 app.get('/api/relationship/:ownerId/follower', routes.relationship.follower);
+app.get('/api/relationship/:toId/follow', routes.relationship.follow);
 
 // listen port
 app.listen(port);
