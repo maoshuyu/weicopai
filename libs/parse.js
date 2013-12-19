@@ -85,6 +85,18 @@ exports.user = function(data, detail) {
         user['followed'] = false; 
     }
 
+    if (detail) {
+        if (data['description']) {
+            user['description'] = data['description'];    
+            user['descriptionEmoji'] = emoji.unifiedToHTML(data['description']);
+        } 
+
+        user['photoCount'] = data['note_c'] ? data['note_c'] : 0;
+        user['followingCount'] = data['following_c'] ? data['following_c'] : 0; 
+        user['followerCount'] = data['followers_c'] ? data['followers_c'] : 0;
+        //user['favourCount'] = data['favour_c'] ? data['favour_c'] : 0;
+    }
+
     return user;
 
 };
