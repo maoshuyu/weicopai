@@ -132,6 +132,13 @@ exports.follower = function(userId, ownerId, oauth, cb, opt) {
 exports.follow = function(userId, toId, action, oauth, cb) {
     var params, done;
 
+    if (userId === toId) {
+        cb({
+            'message': '不能关注自己'
+        }); 
+        return;
+    }
+
     params = {
         'from_id': userId, 
         'to_id': toId,
@@ -156,6 +163,10 @@ exports.follow = function(userId, toId, action, oauth, cb) {
         } else if (data === 'auth failed') {
             cb({
                 'message': '用户未登陆'            
+            }); 
+        } else if (data === 'limit') {
+            cb({
+                'message': '不能关注自己'         
             }); 
         } else {
             cb({
