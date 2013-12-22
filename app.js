@@ -61,12 +61,13 @@ app.get('/api/user/logout', routes.user.logout);
 
 // timeline routes
 app.get('/api/timeline/friend', routes.timeline.friend);
-app.get('/api/timeline/:ownerId/user', routes.timeline.user);
+app.get('/api/timeline/user/:ownerId', routes.timeline.user);
+app.get('/api/timeline/user/:ownerId/tag/:tagId', routes.timeline.userTag);
 
 // relationship routes
-app.get('/api/relationship/:ownerId/following', routes.relationship.following);
-app.get('/api/relationship/:ownerId/follower', routes.relationship.follower);
-app.get('/api/relationship/:toId/follow', routes.relationship.follow);
+app.get('/api/relationship/following/:ownerId', routes.relationship.following);
+app.get('/api/relationship/follower/:ownerId', routes.relationship.follower);
+app.get('/api/relationship/follow/:toId', routes.relationship.follow);
 
 // listen port
 app.listen(port);

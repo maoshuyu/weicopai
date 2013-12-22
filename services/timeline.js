@@ -118,3 +118,63 @@ exports.user = function(userId, ownerId, oauth, cb, opt) {
 
     Client.lomo.fetch('/v1/note/user_timeline', params, done, oauth); 
 };
+
+
+/*
+ * 获取user tag timeline
+ * Callback: 
+ * 回调函数参数列表:
+ * - error, 请求错误
+ * - list, tag timeline list
+ * @param {String} userId 用户ID
+ * @param {String} ownerId tag timeline所有者ID
+ * @param {String} tagId tag ID
+ * @param {Object} oauth Oauth对象 
+ * @param {Function} cb Callback函数
+ * @param {Object} opt 可选参数 
+ */
+exports.userTag = function(userId, ownerId, tagId, oauth, cb, opt) {
+    var params, done, count;
+
+    count = opt.count || 8;
+
+    params = {
+        'user_id': ownerId,
+        'from_id': userId,
+        'tag_id': tagId,
+        'countperpage': count
+    };
+
+    if (opt.sinceId) {
+        params['since_id'] = opt.sinceId; 
+    }
+    if (opt.maxId) {
+        params['max_id'] = opt.maxId; 
+    }
+
+    done = function(error, data) {
+        var list;
+        if (error) {
+            cb({
+                'message': error.message         
+            }); 
+            return;
+        }
+        list = [];
+        if (utils.type(data) === 'array') {
+            data.forEach(function(item, i) {
+                list.push(parse.photo(item, true)); 
+            });
+            cb(null, list);
+        } else {
+            cb({
+                'message': '未知错误'         
+            }); 
+        }
+    };
+
+    Client.lomo.fetch('/v2/user/tag_timeline', params, done, oauth); 
+};
+
+
+

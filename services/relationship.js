@@ -49,9 +49,14 @@ exports.following = function(userId, ownerId, oauth, cb, opt) {
                 list.push(obj);
             }); 
             cb(null, list);
+        // 返回为'' , 可能是用户未登陆
+        } else if (data === '') { 
+            cb({
+                'message': '用户未登陆'         
+            });
         } else {
             cb({
-                'message': '服务器错误'         
+                'message': '未知错误'         
             }); 
         }
     };
@@ -107,9 +112,13 @@ exports.follower = function(userId, ownerId, oauth, cb, opt) {
                 list.push(obj);
             }); 
             cb(null, list);
+        } else if (data === '') {
+            cb({
+                'message': '用户未登陆'         
+            }); 
         } else {
             cb({
-                'message': '服务器错误'         
+                'message': '未知错误'         
             }); 
         }
     };
@@ -170,7 +179,7 @@ exports.follow = function(userId, toId, action, oauth, cb) {
             }); 
         } else {
             cb({
-                'message': '服务器错误'          
+                'message': '未知错误'          
             }); 
         }
     };
