@@ -1,8 +1,9 @@
 var utils = require('./utils'),
 emoji = require('emoji');
 
-exports.photo = function(data, detail) {
-    var photo = {};
+exports.photo = function(data, userId, detail) {
+    var photo = {},
+    like = {};
     if (!data) {
         return photo; 
     }
@@ -43,6 +44,21 @@ exports.photo = function(data, detail) {
             photo['time'] = exports.time(photo['time']);
         } else {
             photo['time'] = null; 
+        }
+
+
+        if (data['like']) {
+            like = {};
+            like['list'] = exports.likeList(data['like'], userId);
+            like['count'] = data['like_c'] ? data['like_c'] : like['list'].length; 
+            like['liked'] = data['favour'] ? data['favour'] : 0;
+            photo['like'] = like;
+        } else {
+            photo['like'] = {
+                'list': [], 
+                'count': 0,
+                'liked': false
+            }; 
         }
     }
 
@@ -106,6 +122,24 @@ exports.time = function(t) {
         'mtd': mtd,
         'origin': t
     };
+};
+
+exports.likeList = function(data, userId) {
+    var list = [];
+    data.forEach(function(item, i) {
+        // likeList length 小于13
+        if (i + 1 > 13) {
+            break; 
+        }
+
+        if (userId === item['user_id']) {
+            return; 
+        } else {
+            list.push(exports.user(item));    
+        } 
+    });
+
+    return list;
 };
 
 

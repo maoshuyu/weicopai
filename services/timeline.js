@@ -42,7 +42,7 @@ exports.friend = function(userId, oauth, cb, opt) {
         if (utils.type(data) === 'array') {
             list = [];
             data.forEach(function(item, i) {
-                list.push(parse.photo(item, true)); 
+                list.push(parse.photo(item, userId, true)); 
             }); 
             cb(null, list);
         } else if (data === 'auth failed') {
@@ -102,7 +102,7 @@ exports.user = function(userId, ownerId, oauth, cb, opt) {
         if (utils.type(data) === 'array') {
             list = [];
             data.forEach(function(item, i) {
-                list.push(parse.photo(item, true)); 
+                list.push(parse.photo(item, userId, true)); 
             }); 
             cb(null, list);
         } else {
@@ -159,7 +159,7 @@ exports.userTag = function(userId, ownerId, tagId, oauth, cb, opt) {
         list = [];
         if (utils.type(data) === 'array') {
             data.forEach(function(item, i) {
-                list.push(parse.photo(item, true)); 
+                list.push(parse.photo(item, userId, true)); 
             });
             cb(null, list);
         } else {
@@ -216,7 +216,7 @@ exports.tag = function(userId, tagId, oauth, cb, opt) {
         list = [];
         if (utils.type(data) === 'array') {
             data.forEach(function(item, i) {
-                list.push(parse.photo(item, true)); 
+                list.push(parse.photo(item, userId, true)); 
             });
             cb(null, list);
         } else {
