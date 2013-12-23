@@ -70,6 +70,9 @@ app.get('/api/relationship/following/:ownerId', routes.relationship.following);
 app.get('/api/relationship/follower/:ownerId', routes.relationship.follower);
 app.get('/api/relationship/follow/:toId', routes.relationship.follow);
 
+// photo routes
+app.get('/api/photo/:photoId/like/list', routes.photo.likeList);
+
 // listen port
 app.listen(port);
 

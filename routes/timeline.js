@@ -102,6 +102,9 @@ exports.userTag = function(req, res, next) {
     });
 };
 
+/*
+ * tag
+ */
 exports.tag = function(req, res, next) {
     var oauth = req.oauth,
     userId = req.userId,

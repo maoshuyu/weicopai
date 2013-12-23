@@ -49,7 +49,20 @@ exports.photo = function(data, userId, detail) {
 
         if (data['like']) {
             like = {};
-            like['list'] = exports.likeList(data['like'], userId);
+            like['list'] = []; 
+            data['like'].forEach(function(item, i) {
+                // likeList length 小于13
+                if (i + 1 > 13) {
+                    return; 
+                }
+
+                if (userId === item['user_id']) {
+                    data['favour'] = 1;
+                } else {
+                    like['list'].push(exports.user(item));    
+                } 
+            });
+
             like['count'] = data['like_c'] ? data['like_c'] : like['list'].length; 
             like['liked'] = data['favour'] ? data['favour'] : 0;
             photo['like'] = like;
@@ -77,7 +90,7 @@ exports.user = function(data, detail) {
         user['name'] = data['name']; 
         user['nameEmoji'] = emoji.unifiedToHTML(data['name']);
     } else {
-        user['name'] = user['emoji'] = ''; 
+        user['name'] = user['nameEmoji'] = ''; 
     }
 
     // user avatar 
@@ -126,19 +139,6 @@ exports.time = function(t) {
 
 exports.likeList = function(data, userId) {
     var list = [];
-    data.forEach(function(item, i) {
-        // likeList length 小于13
-        if (i + 1 > 13) {
-            break; 
-        }
-
-        if (userId === item['user_id']) {
-            return; 
-        } else {
-            list.push(exports.user(item));    
-        } 
-    });
-
     return list;
 };
 
