@@ -16,6 +16,8 @@
 
 (r'/api/logout', LogoutHandler),
 
+(r'/api/like_list', LikeListHandler),
+
 分割线
 ==============================
 
@@ -23,8 +25,6 @@
 (r'/api/topic_timeline', TopicTimelineHandler),
 
 (r'/api/like', LikeHandler),
-
-(r'/api/like_list', LikeListHandler),
 
 (r'/api/comment', CommentHandler),
 
@@ -62,8 +62,7 @@
 
 (r'/api/notify/letter_list', LetterNotifyListHandler),
 
-#           清除消息计数
-#           (r'/api/notify/reset', NotifyResetHandler),
+(r'/api/notify/reset', NotifyResetHandler),
 
 (r'/api/notify/list', NotifyListHandler),
 
@@ -99,30 +98,30 @@
 
 (r'/app/discovery', DiscoveryRenderHandler),
 
-            (r'/app/upload', UploadHandler),
+(r'/app/upload', UploadHandler),
 
-            (r'/app/search', SearchRenderHandler),
+(r'/app/search', SearchRenderHandler),
 
-            (r'/app/notify', NotifyRenderHandler),
+(r'/app/notify', NotifyRenderHandler),
 
-            (r'/app/notify/choice', NotifyChoiceRenderHandler),
+(r'/app/notify/choice', NotifyChoiceRenderHandler),
 
-            (r'^/app/notify/send-(?P<send_id>\d+)$', NotifySendRenderHandler),
+(r'^/app/notify/send-(?P<send_id>\d+)$', NotifySendRenderHandler),
 
-            (r'/app/notify/search', NotifySearchRenderHandler),
+(r'/app/notify/search', NotifySearchRenderHandler),
 
-            (r'/app/hot', HotRenderHandler),
+(r'/app/hot', HotRenderHandler),
 
-            (r'/app/clause', ClauseHandler),
+(r'/app/clause', ClauseHandler),
 
-            (r'^/(?P<owner_id>[a-zA-Z0-9]+)$', ProfileRenderHandler),
+(r'^/(?P<owner_id>[a-zA-Z0-9]+)$', ProfileRenderHandler),
 
-            (r'^/(?P<owner_id>\d+)/photo-(?P<photo_id>\d+)$', PhotoRenderHandler),
+(r'^/(?P<owner_id>\d+)/photo-(?P<photo_id>\d+)$', PhotoRenderHandler),
 
-            (r'^/(?P<owner_id>\d+)/tag-(?P<tag_id>\d+)$', UserTagRenderHandler),
+(r'^/(?P<owner_id>\d+)/tag-(?P<tag_id>\d+)$', UserTagRenderHandler),
 
-            (r'^/tag-(?P<tag_id>\d+)$', TagRenderHandler),
+(r'^/tag-(?P<tag_id>\d+)$', TagRenderHandler),
 
-            (r'^/topic-(?P<topic_id>\d+)$', TopicRenderHandler),
-            
-            (r'^/location-(?P<tag_id>\d+)$', LocationRenderHandler)
+(r'^/topic-(?P<topic_id>\d+)$', TopicRenderHandler),
+
+(r'^/location-(?P<tag_id>\d+)$', LocationRenderHandler)

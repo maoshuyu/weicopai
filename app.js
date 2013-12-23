@@ -52,26 +52,7 @@ app.use(function(req, res, next) {
 // router
 app.use(app.router);
 
-// user routes
-app.post('/api/user/login', routes.user.login);
-app.post('/api/user/logout', routes.user.logout);
-
-app.get('/api/user/login', routes.user.login);
-app.get('/api/user/logout', routes.user.logout);
-
-// timeline routes
-app.get('/api/timeline/friend', routes.timeline.friend);
-app.get('/api/timeline/user/:ownerId', routes.timeline.user);
-app.get('/api/timeline/user/:ownerId/tag/:tagId', routes.timeline.userTag);
-app.get('/api/timeline/tag/:tagId', routes.timeline.tag);
-
-// relationship routes
-app.get('/api/relationship/following/:ownerId', routes.relationship.following);
-app.get('/api/relationship/follower/:ownerId', routes.relationship.follower);
-app.get('/api/relationship/follow/:toId', routes.relationship.follow);
-
-// photo routes
-app.get('/api/photo/:photoId/like/list', routes.photo.likeList);
+routes(app);
 
 // listen port
 app.listen(port);
