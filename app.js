@@ -63,6 +63,7 @@ app.get('/api/user/logout', routes.user.logout);
 app.get('/api/timeline/friend', routes.timeline.friend);
 app.get('/api/timeline/user/:ownerId', routes.timeline.user);
 app.get('/api/timeline/user/:ownerId/tag/:tagId', routes.timeline.userTag);
+app.get('/api/timeline/tag/:tagId', routes.timeline.tag);
 
 // relationship routes
 app.get('/api/relationship/following/:ownerId', routes.relationship.following);

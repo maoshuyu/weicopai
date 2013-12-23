@@ -67,6 +67,9 @@ exports.user = function(req, res, next) {
     });
 };
 
+/*
+ * user tag timeline
+ */
 exports.userTag = function(req, res, next) {
     var oauth = req.oauth,
     userId = req.userId,
@@ -88,12 +91,43 @@ exports.userTag = function(req, res, next) {
 
         res.json({
             'code': 0,         
-            'tag': data
+            'timeline': data
         }); 
     };
 
     timeline.userTag(userId, ownerId, tagId, oauth, done, {
         'sinceId': sinceId,     
+        'maxId': maxId,
+        'count': count
+    });
+};
+
+exports.tag = function(req, res, next) {
+    var oauth = req.oauth,
+    userId = req.userId,
+    tagId = req.params.tagId,
+    count = req.query.count || 8,
+    sinceId = req.query.sinceId,
+    maxId = req.query.maxId,
+    done;
+
+    done = function(error, data) {
+         if (error) {
+            res.json({
+                'code': 1,
+                'message': error.message
+            }); 
+            return;
+        }
+
+        res.json({
+            'code': 0,         
+            'timeline': data
+        }); 
+    };
+
+    timeline.tag(userId, tagId, oauth, done, {
+        'sinceId': sinceId,       
         'maxId': maxId,
         'count': count
     });
