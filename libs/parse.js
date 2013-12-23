@@ -62,7 +62,6 @@ exports.photo = function(data, userId, detail) {
                     like['list'].push(exports.user(item));    
                 } 
             });
-
             like['count'] = data['like_c'] ? data['like_c'] : like['list'].length; 
             like['liked'] = data['favour'] ? data['favour'] : 0;
             photo['like'] = like;
@@ -102,23 +101,24 @@ exports.user = function(data, detail) {
         user['avatar'] = ''; 
     }
 
-    // followed
-    if (data['followed'] === 1) {
-        user['followed'] = true; 
-    } else {
-        user['followed'] = false; 
-    }
-
     if (detail) {
+        // followed
+        if (data['followed'] === 1) {
+            user['followed'] = true; 
+        } else {
+            user['followed'] = false; 
+        }
+
         if (data['description']) {
             user['description'] = data['description'];    
             user['descriptionEmoji'] = emoji.unifiedToHTML(data['description']);
+        } else {
+            user['description'] = user['descriptionEmoji'] = ''; 
         } 
 
         user['photoCount'] = data['note_c'] ? data['note_c'] : 0;
         user['followingCount'] = data['following_c'] ? data['following_c'] : 0; 
         user['followerCount'] = data['followers_c'] ? data['followers_c'] : 0;
-        //user['favourCount'] = data['favour_c'] ? data['favour_c'] : 0;
     }
 
     return user;
@@ -136,10 +136,3 @@ exports.time = function(t) {
         'origin': t
     };
 };
-
-exports.likeList = function(data, userId) {
-    var list = [];
-    return list;
-};
-
-
