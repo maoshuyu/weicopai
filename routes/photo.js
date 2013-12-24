@@ -31,3 +31,26 @@ exports.likeList = function(req, res, next) {
     });
 
 };
+
+exports.like = function(req, res, next) {
+    var userId = req.userId,
+    oauth = req.oauth,
+    photoId = req.params.photoId,
+    action = req.query.action;
+
+    done = function(error, data) {
+        if (error) {
+            res.json({
+                'code': 1,
+                'message': error.message
+            }); 
+            return;
+        }
+
+        data['code'] = 0;
+        res.json(data);
+    };
+
+    photo.like(userId, photoId, action, oauth, done);
+
+};

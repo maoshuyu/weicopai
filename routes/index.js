@@ -20,9 +20,14 @@ module.exports = function(app) {
     // relationship routes
     app.get('/api/relationship/following/:ownerId', relationship.following);
     app.get('/api/relationship/follower/:ownerId', relationship.follower);
+
     app.get('/api/relationship/follow/:toId', relationship.follow);
+    app.post('/api/relationship/follow/:toId', relationship.follow);
 
     // photo routes
     app.get('/api/photo/:photoId/like/list', photo.likeList);
+
+    app.get('/api/photo/:photoId/like', photo.like);
+    app.post('/api/photo/:photoId/like', photo.like);
 };
 
