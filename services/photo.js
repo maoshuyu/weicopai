@@ -37,6 +37,10 @@ exports.likeList = function(userId, ownerId, photoId, oauth, cb, opt) {
                 list.push(parse.user(item['user']));        
             });
             cb(null, list);
+        } else if (data === '') {
+            cb({
+                'message': '用户未登陆'            
+            }); 
         } else {
             cb({
                 'message': '未知错误'        
