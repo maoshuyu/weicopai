@@ -18,13 +18,13 @@
 
 (r'/api/like_list', LikeListHandler),
 
+(r'/api/like', LikeHandler),
+
 分割线
 ==============================
 
 
 (r'/api/topic_timeline', TopicTimelineHandler),
-
-(r'/api/like', LikeHandler),
 
 (r'/api/comment', CommentHandler),
 
