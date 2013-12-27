@@ -20,6 +20,7 @@
 
 (r'/api/like', LikeHandler),
 
+(r'/api/photo', PhotoHandler),
 分割线
 ==============================
 
@@ -29,8 +30,6 @@
 (r'/api/comment', CommentHandler),
 
 (r'/api/comment_list', CommentListHandler),
-
-(r'/api/photo', PhotoHandler),
 
 (r'/api/tag/users', TagUsers),
 

@@ -29,5 +29,7 @@ module.exports = function(app) {
 
     app.get('/api/photo/:photoId/like', photo.like);
     app.post('/api/photo/:photoId/like', photo.like);
+
+    app.get('/api/photo/:photoId', photo.get);
 };
 

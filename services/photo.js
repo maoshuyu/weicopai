@@ -3,6 +3,53 @@ utils = require('../libs/utils'),
 parse = require('../libs/parse');
 
 /*
+ * 获取photo
+ * Callback: 
+ * 回调函数参数列表:
+ * - error, 请求错误
+ * - data, photo信息 
+ * @param {String} userId 用户ID
+ * @param {String} photoId photoID
+ * @param {Object} oauth Oauth对象 
+ * @param {Function} cb Callback函数
+ */
+exports.get = function(userId, photoId, oauth, cb) {
+    var params, done;
+
+    params = {
+        'from_id': userId, 
+        'note_id': photoId
+    };
+
+    done = function(error, data) {
+    
+        if (error) {
+            cb({
+                'message': error.message         
+            }); 
+            return;
+        } 
+
+        if (utils.type(data) === 'object') {
+            cb(null, parse.photo(data, userId, true));
+        } else if (data === '') {
+            cb({
+                'message': '用户未登陆'            
+            }); 
+        } else {
+            cb({
+                'message': '未知错误'        
+            }); 
+        }
+    };
+
+    Client.lomo.fetch('/v1/note/get', params, done, oauth); 
+    
+};
+
+
+
+/*
  * 获取likelist
  * Callback: 
  * 回调函数参数列表:

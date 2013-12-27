@@ -1,5 +1,30 @@
 var photo = require('../services').photo;
 
+
+exports.get = function(req, res, next) {
+    var userId = req.userId,
+    oauth = req.oauth,
+    photoId = req.params.photoId,
+    done;
+
+    done = function(error, data) {
+        if (error) {
+            res.json({
+                'code': 1,         
+                'message': error.message
+            }); 
+        } 
+
+        res.json({
+            'code': 0,         
+            'photo': data
+        });
+    
+    };
+
+    photo.get(userId, photoId, oauth, done);
+};
+
 exports.likeList = function(req, res, next) {
     var userId = req.userId,
     oauth = req.oauth,
