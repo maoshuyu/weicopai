@@ -21,6 +21,7 @@
 (r'/api/like', LikeHandler),
 
 (r'/api/photo', PhotoHandler),
+
 分割线
 ==============================
 
@@ -37,45 +38,11 @@
 
 (r'/api/discovery', DiscoveryHandler),
 
-(r'/api/upload/imm', ReleaseImmediatelyHandler),
-
-(r'/api/upload/with', WithFriendHandler),
-
-(r'/api/upload/friend', KeywordFriendHandler),
-
-(r'/api/upload/tag', KeywordTagHandler),
-
-(r'/api/upload/create_tag', CreateTagHandler),
-
-(r'/api/update/password', UpdatePasswordHandler),
-
-(r'/api/update/info', UpdateInfoHandler),
-
 (r'/api/search', SearchHandler),
-
-(r'/api/feedback', FeedBackHandler),
-
-(r'/api/notify', NotifyHandler),
-
-(r'/api/notify/friend_list', FriendNotifyListHandler),
-
-(r'/api/notify/letter_list', LetterNotifyListHandler),
-
-(r'/api/notify/reset', NotifyResetHandler),
-
-(r'/api/notify/list', NotifyListHandler),
-
-(r'/api/notify/send/letter', SendLetterHandler),
-
-(r'/api/notify/search', NotifySearchHandler),
-
-(r'/api/find_password', FindPasswordHandler),
-
-(r'/api/reset_password', ResetPasswordHandler),
 
 (r'/api/sidebar', SidebarHandler),
 
-(r'/api/upload_apply', UploadApplyHandler),
+
 
 (r'/', TimeLineRenderHandler),
 
@@ -124,3 +91,40 @@
 (r'^/topic-(?P<topic_id>\d+)$', TopicRenderHandler),
 
 (r'^/location-(?P<tag_id>\d+)$', LocationRenderHandler)
+
+(r'/api/upload/imm', ReleaseImmediatelyHandler),
+
+(r'/api/upload/with', WithFriendHandler),
+
+(r'/api/upload/friend', KeywordFriendHandler),
+
+(r'/api/upload/tag', KeywordTagHandler),
+
+(r'/api/upload/create_tag', CreateTagHandler),
+
+(r'/api/update/password', UpdatePasswordHandler),
+
+(r'/api/update/info', UpdateInfoHandler),
+
+(r'/api/upload_apply', UploadApplyHandler),
+
+(r'/api/feedback', FeedBackHandler),
+
+(r'/api/notify', NotifyHandler),
+
+(r'/api/notify/friend_list', FriendNotifyListHandler),
+
+(r'/api/notify/letter_list', LetterNotifyListHandler),
+
+(r'/api/notify/reset', NotifyResetHandler),
+
+(r'/api/notify/list', NotifyListHandler),
+
+(r'/api/notify/send/letter', SendLetterHandler),
+
+(r'/api/notify/search', NotifySearchHandler),
+
+(r'/api/find_password', FindPasswordHandler),
+
+(r'/api/reset_password', ResetPasswordHandler),
+
