@@ -3,7 +3,7 @@ emoji = require('emoji');
 
 exports.photo = function(data, userId, detail) {
     var photo = {},
-    like = {};
+    comment, like;
     if (!data) {
         return photo; 
     }
@@ -72,6 +72,18 @@ exports.photo = function(data, userId, detail) {
                 'liked': false
             }; 
         }
+
+        if (data['comment']) {
+            comment = {};
+            comment['list'] = exports.commentList(data['comment']);
+            comment['count'] = data['comment_c'] ? data['comment_c'] : comment['list'].length;   
+            photo['comment'] = comment;
+        } else {
+            photo['comment'] = {
+                'list': [], 
+                'count': 0,
+            }; 
+        }
     }
 
     return photo;
@@ -135,4 +147,24 @@ exports.time = function(t) {
         'mtd': mtd,
         'origin': t
     };
+};
+
+exports.commentList = function(list) {
+    var comments = [],
+    user, content, time;
+    list.forEach(function(item, i) {
+        user = exports.user(item);    
+        content = emoji.unifiedToHTML(item['content']); 
+        time = utils.time.unix(item['init_time']);
+        time = exports.time(time);
+
+        comments.push({
+            'content': content,     
+            'user': user,
+            'time': time,
+            'id': item['id']
+        });
+    });
+
+    return comments;
 };
